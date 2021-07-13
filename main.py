@@ -1,7 +1,4 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from collections import deque
 
 # to keep track of the blocks of maze
@@ -39,7 +36,7 @@ def bfs(Grid, dest: Grid_Position, start: Grid_Position):
             print("Path found!!")
             print("Total nodes visited = ", cost)
             return current_block.cost
-        #print("current node = ", current_pos.x, current_pos.y)
+        
         if current_block not in visited_blocks:
             visited_blocks[current_pos.x][current_pos.y] = True
             cost = cost + 1
@@ -61,13 +58,11 @@ def bfs(Grid, dest: Grid_Position, start: Grid_Position):
                         next_cell = Node(Grid_Position(x_pos, y_pos),
                                        current_block.cost + 1)
                         visited_blocks[x_pos][y_pos] = True
-                        #print(x_pos,y_pos)
                         queue.append(next_cell)
     return -1
 
 def create_node(x, y, c):
     val = Grid_Position(x, y)
-    #print((x, y, c))
     return Node(val, c + 1)
 
 #dfs algo for maze
@@ -78,8 +73,6 @@ def dfs(Grid, dest: Grid_Position, start: Grid_Position):
     visited_blocks = [[False for i in range(m)]
                for j in range(n)]
     visited_blocks[start.x][start.y] = True
-    #adj_cell_x = [-1, 0, 0, 1]
-    #adj_cell_y = [0, -1, 1, 0]
     stack = deque()
     sol = Node(start, 0)
     stack.append(sol)
@@ -96,7 +89,7 @@ def dfs(Grid, dest: Grid_Position, start: Grid_Position):
             return current_block.cost
         x_pos = current_pos.x
         y_pos = current_pos.y
-        #print("current node = ", x_pos, y_pos, current_block.cost)
+     
         for i in range(neigh):
             if x_pos == len(Grid) - 1 and adj_cell_x[i] == 1:
                 x_pos = current_pos.x
@@ -148,4 +141,3 @@ if __name__ == '__main__':
     print("main start\n")
     main()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
